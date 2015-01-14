@@ -1,0 +1,100 @@
+{% extends "base_sidebar.html" %}
+
+{% block title %} {{titulo}} {% endblock %} 
+
+{% block scripts %}
+<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+<script type="text/javascript">
+    bkLib.onDomLoaded(function() {
+        new nicEditor({
+            buttonList: ['bold', 'italic', 'underline', 'left', 'center', 'right', 'justify', 'ol', 'ul', 'link']
+        }).panelInstance('propuesta');
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $("#nueva-propuesta").validate({
+            rules: {
+                titulo: {
+                    required: true,
+                },
+                sector: {
+                    requiered: true,
+                }
+            },
+            messages: {
+                titulo: {
+                    required: "Tiene que poner un título",
+                },
+                sector: {
+                    requiered: "Tiene que elegir un sector",
+                }
+            }
+        });
+        {% if propuesta.sector_id %}
+        $('#sector_{{propuesta.sector_id}}').prop("checked", "checked");
+        {% endif %}
+        {% if propuesta.barrio_id %}
+        $('#barrio_{{propuesta.barrio_id}}').attr("selected", "selected");
+        {% endif %}
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<form class="form-horizontal" role="form" id="nueva-propuesta" action="guardar_propuesta.php" method="post" enctype="multipart/form-data">
+
+    {% if propuesta.id %}
+    <input type="hidden" name="id" value="{{propuesta.id}}">
+    {% endif %}
+    
+    <div class="col-xs-10 col-md-offset-1">
+        <div class="form-group">
+            <label for="título">Título *</label>
+            <input type="text" name="titulo" class="form-control" id="titulo" placeholder="Título de la propuesta" value="{{propuesta.titulo}}">
+        </div>
+    </div>
+
+    <div class="col-xs-10 col-md-offset-1">
+        <div class="form-group">
+            <label for="propuesta">Escribe la propuesta *</label>
+            <textarea class="form-control" name="propuesta" id="propuesta" rows="10">{{propuesta.propuesta}}</textarea>
+        </div>
+    </div>
+
+    <div class="col-xs-10 col-md-offset-1">
+        <div class="form-group">
+            <label for="sector">Selecciona un sector *</label>
+
+            {% for key, sector in sectores %}
+            {% if key is divisibleby(3) %}
+            <div style="clear:both"></div>
+            {% endif %}
+            <label class="radio-inline col-xs-3">
+                <input type="radio" name="sector" id="sector_{{sector.id}}" value="{{sector.id}}" />{{sector.nombre}}
+            </label>
+            {% endfor %}
+
+            <div style="clear:both"></div>
+        </div>
+    </div>
+
+    <div class="col-xs-10 col-md-offset-1">
+        <div class="form-group">
+            <label for="barrio">Selecciona un barrio (opcional)</label>
+
+            <select class="form-control" name="barrio" id="barrio">
+                <option value="">Selecciona un barrio</option>
+                {% for barrio in barrios %}
+                <option id="barrio_{{barrio.id}}" value="{{barrio.id}}">{{barrio.nombre}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="col-xs-10 col-md-offset-1">
+        <button type="submit" id="enviar" class="btn-lg btn-block btn btn-success">Enviar</button>
+    </div>
+
+</form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base_sidebar.html" %}
+
+{% block title %}Propuestas de {{tag}} {% endblock %}
+{% block content %}
+	<div class="row">
+		<div class="col-xs-12">
+			<h2>Propuestas de programa: {{tag}}</h2>
+		</div>
+	</div>
+    {% include "propuestas_base.html" %}
+
+{% endblock%}

@@ -1,0 +1,31 @@
+<script>
+    $.ajax({
+            url: 'ajax/sidebar.php',
+            data: {},
+            type: 'POST',
+            dataType: 'json',
+            success: function(data) {
+                $.each(data['sectores'], function (clave, valor){
+						$('#sidebar_sectores').append('<a class="enlace-barrio" href="listado_sector.php?sector=' + valor['id']+ '">'+valor['nombre']+'</a></br>');
+					});
+                
+                $.each(data['barrios'], function (clave, valor){
+						$('#sidebar_barrios').append('<a class="enlace-barrio" href="listado_barrio.php?barrio=' + valor['id']+ '">'+valor['nombre']+'</a></br>');
+					});
+            }
+    });
+
+</script>
+
+	<div class="seccion">
+        {% include "texto_sidebar.html" %}
+	</div>	
+
+	<div class="seccion">
+		<h4>Sectores</h4>
+        <div id="sidebar_sectores">
+        </div>
+		<h4>Barrios</h4>
+        <div id="sidebar_barrios">
+        </div>
+	</div>

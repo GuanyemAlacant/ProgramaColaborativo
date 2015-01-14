@@ -1,0 +1,49 @@
+{% block propuestas_base %}
+	{% if user %}
+	<div class="row">
+		<div class="col-xs-12">
+			<a class="btn btn-success btn-lg btn-block" href="alta_propuesta.php">SUBIR UNA NUEVA PROPUESTA</a>
+		</div>
+	</div>	
+	{% else %}
+	<div class="row">
+		<div class="col-xs-12">
+			<a href="login.php">Tienes que estar identificado para hacer una propuesta, votarla o comentarla.</a>
+		</div>
+	</div>
+	{% endif %}
+
+	<div class="row">
+		<ul class="nav nav-tabs" role="tablist" id="tabsIndex">
+  			<li class="active"><a href="#valoradas" role="tab" data-toggle="tab">Más valoradas</a></li>
+  			<li><a href="#consensuadas" role="tab" data-toggle="tab">Más consenso</a></li>
+  			<li><a href="#debatidas" role="tab" data-toggle="tab">Más debatidas</a></li>
+  			<li><a href="#recientes" role="tab" data-toggle="tab">Más recientes</a></li>
+  
+		</ul>
+	</div>
+
+	<div class="tab-content">
+
+        <div class="tab-pane active" id="valoradas">
+            {% set list = []|merge(valoradas) %}
+            {% include "propuestas_list.html" with list %}
+        </div>
+
+        <div class="tab-pane" id="consensuadas">
+            {% set list = []|merge(consensuadas) %}
+            {% include "propuestas_list.html" with list %}
+        </div>
+
+        <div class="tab-pane" id="debatidas">
+            {% set list = []|merge(debatidas) %}
+            {% include "propuestas_list.html" with list %}
+        </div>
+
+        <div class="tab-pane" id="recientes">
+            {% set list = []|merge(recientes) %}
+            {% include "propuestas_list.html" with list %}
+        </div>
+        
+	</div>
+{% endblock %}

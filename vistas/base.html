@@ -1,0 +1,18 @@
+{% extends "base_main.html" %}
+
+{% block main_container %}
+<div class="row">
+<nav>
+    <ul>
+	    <li><a href="listado_todas.php">Ver todas</a></li>
+	    <li><a href="#sectores">Sectores</a></li>
+	    <li><a href="#barrios">Barrios</a></li>
+    </ul>
+</nav>
+</div>
+<div class="container principal">
+	{% block content %}{% endblock %}
+</div>
+{% endblock %}
+
+

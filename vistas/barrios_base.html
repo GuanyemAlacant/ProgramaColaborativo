@@ -1,0 +1,34 @@
+{% block barrios_base %}
+
+        
+
+	<div class="row visible-sm visible-md visible-lg">
+		<div class="col-md-12">
+			<svg version="1.1" class="img-responsive" id="plano" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="150px" y="0px" width="1200px" height="500px" viewBox="150 0 1200 500" enable-background="new 0 0 842 595" xml:space="preserve">
+                    
+	{% for barrio in list %}
+
+    <path class="barrio" id="barrio_{{barrio.id}}" fill-rule="evenodd" fill="#C60C30" fill-opacity="0.50" stroke="#e9e8de" stroke-opacity="1.0" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" cursor="pointer" d="{{barrio.svg_data}}"></path>
+    <text x="{{barrio.x}}" y="{{barrio.y}}" fill="#000000" font-family="Arial" font-size="7px" font-weight="bold" pointer-events="none" text-anchor="middle"><tspan baseline-shift="0" x="0" dy="0em">{{barrio.nombre}}</tspan></text>
+
+	{% else %}
+		    <text x="0" y="0" fill="#000000" font-family="Arial" font-size="7px" font-weight="bold" pointer-events="none" text-anchor="middle"><tspan baseline-shift="0" x="0" dy="0em">No hay barrios.</tspan></text>
+
+	{% endfor %}
+                
+            </svg>
+        </div>
+    </div>
+
+	<div class="row visible-xs">
+	   <h3 class="enlace-barrio">Selecciona barrio</h3>
+               
+	{% for barrio in list %}
+		<a class="enlace-barrio" href="listado_barrio.php?barrio={{barrio.id}}">{{barrio.nombre}}</a><br>
+	{% else %}
+        <p>No hay barrios.</p>
+	{% endfor %}
+        
+	</div>
+
+{% endblock %}

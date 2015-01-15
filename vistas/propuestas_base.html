@@ -26,22 +26,22 @@
 	<div class="tab-content">
 
         <div class="tab-pane active" id="valoradas">
-            {% set list = []|merge(valoradas) %}
+            {% set list = valoradas %}
             {% include "propuestas_list.html" with list %}
         </div>
 
         <div class="tab-pane" id="consensuadas">
-            {% set list = []|merge(consensuadas) %}
+            {% set list = consensuadas %}
             {% include "propuestas_list.html" with list %}
         </div>
 
         <div class="tab-pane" id="debatidas">
-            {% set list = []|merge(debatidas) %}
+            {% set list = debatidas %}
             {% include "propuestas_list.html" with list %}
         </div>
 
         <div class="tab-pane" id="recientes">
-            {% set list = []|merge(recientes) %}
+            {% set list = recientes %}
             {% include "propuestas_list.html" with list %}
         </div>
         

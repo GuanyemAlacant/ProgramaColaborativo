@@ -455,6 +455,31 @@ img.sector {
   margin-bottom: 15px;
 }
 
+img.sector:hover {
+    opacity: 1;
+}
+
+svg {
+    display: block;
+    margin: auto;
+}
+
+path.barrio {
+    fill:#C60C30;
+    fill-rule:evenodd;
+    fill-opacity:0.5;
+    stroke:#e9e8de;
+    stroke-width:1px;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-opacity:1;
+    cursor:pointer;
+}
+
+path.barrio:hover {
+    fill-opacity:1;
+}
+
 a.fa-info-circle{
   display: inline-block;
   float: right;

@@ -16,6 +16,11 @@ INSERT INTO `prog_sectores` VALUES(10, 'Educación', 'static/images/educacion.jp
 INSERT INTO `prog_sectores` VALUES(11, 'TIC', 'static/images/tic.jpg', '<p>En este eje sectorial se debate acerca de:</p>\r\n<ul>\r\n    <li>Milla Digital.</li>\r\n    <li>Datos abiertos (Open Data)</li>\r\n    <li>Uso de software libre.</li>\r\n    <li>Web municipal.</li>\r\n    <li>Smart City.</li>\r\n    <li>Servicio WIFI.</li>\r\n    <li>Accesibilidad a herramientas informáticas y de comunicación.</li>\r\n    <li>Formación en TIC.</li>\r\n    <li>Privacidad y protección del menor.</li>\r\n    <li>Fomento de iniciativas emprendedoras.</li>\r\n    <li>Apoyo a la formación técnica especializada.</li>\r\n</ul>\r\n<p class="text-danger"><small>Puedes contactar con el grupo en tic@ganemoszaragoza.com.</small></p>');
 INSERT INTO `prog_sectores` VALUES(12, 'Deportes', 'static/images/deporte.jpg', '<p>En este eje sectorial se debate acerca de:</p>\r\n<ul>\r\n<li>Plan director del deporte.</li>\r\n<li>Equipamientos e infraestructuras deportivas (piscinas, polideportivos, campos de fútbol, potreros, velódromo...) .</li>\r\n<li>Deporte popular, práctica de deporte informal.</li>\r\n<li>Deporte y mujer.</li>\r\n<li>Deporte de base.</li>\r\n<li>Deporte y mayores.</li>\r\n<li>Predeporte.</li>\r\n<li>Deporte profesional.</li>\r\n<li>Carreras populares y otros eventos deportivos.</li>\r\n<li>Seguridad en la práctica deportiva (prevención, desfibriladores...)</li>\r\n</ul>\r\n<p class="text-danger"><small>Puedes contactar con el grupo en deporte@ganemoszaragoza.com.</small></p>');
 
+
+--
+-- Volcar la base de datos para la tabla `prog_barrios`
+--
+
 INSERT INTO  `prog_barrios` VALUES (1, 'Actur-Rey-Fernando');
 INSERT INTO  `prog_barrios` VALUES (2, 'Alfocea');
 INSERT INTO  `prog_barrios` VALUES (3, 'Almozara');

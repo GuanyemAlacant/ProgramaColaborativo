@@ -38,7 +38,7 @@ header.app-header h1 {
   display: inline-block;
   width: 300px;
   font-size: 12px;
-  margin-top: 12px;
+  margin-top: 8px;
 }
 header.app-header h1 .logo {
   height: 40px;

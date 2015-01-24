@@ -8,10 +8,10 @@
 		<div class="clearfix visible-sm"> </div>
 		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <h4 class="titulo-sector"><a href="listado_sector.php?sector={{sector.id}}">{{sector.nombre|raw}}</a> 
-                <a data-toggle="modal" href="#urb" class="fa fa-info-circle"></a></h4>
+                <a data-toggle="modal" href="#modal_{{sector.id}}" class="fa fa-info-circle"></a></h4>
             <img id="{{sector.id}}" alt="{{sector.nombre}}" class="img-responsive sector" src="{{sector.image_url}}">
         </div>
-        <div id="urb" class="modal fade">
+        <div id="modal_{{sector.id}}" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -19,7 +19,7 @@
                         <h4 class="modal-title">{{sector.nombre}}</h4>
                     </div>
                     <div class="modal-body">
-                        {{sector.descripcion|raw}}
+                        {{sector.info|raw}}
                     </div>
                 </div>
             </div>

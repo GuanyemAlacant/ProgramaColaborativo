@@ -6,15 +6,42 @@
 <script>
 	$(document).ready(function() {
 
+        //--
 		$("img.sector").click(function() { 
 			var i=$(this).attr('id');
             document.location = "listado_sector.php?sector="+ i;
 	 	});
-        $("path").addClass("barrio");
-		$("path.barrio").click(function() { 
-			var i=$(this).attr('id');
-            document.location = "listado_barrio.php?barrio="+ i;
-	 	});
+
+        //--
+        $("svg path").each(function(num, elem) {
+            // hacemos una lista de los atributos a borrar (todos excepto id y d)
+            var attributes = $.map(elem.attributes, function(item) {
+                if(item.name != "id" && item.name != "d")
+                    return item.name;
+            });
+
+            // borramos todos los atributos encontrados
+            var element = $(this);
+            $.each(attributes, function(i, item) {
+                element.removeAttr(item);
+            });
+            
+            // asignamos la clase barrio
+            elem.setAttribute("class", "barrio");
+            
+            $(this).click(function() { 
+                var i=$(this).attr('id');
+                document.location = "listado_barrio.php?barrio="+ i;
+            });
+        });
+        
+        //--
+        $("svg text").each(function(num, elem) {
+            elem.setAttribute("pointer-events", "none");
+        });
+        
+        //--
+        
 	});
 </script>
 
@@ -24,23 +51,23 @@
 {% block content %}
 	<div class="row">
 		<div class="col-xs-12">
-			<h1 class="center">Programa colaborativo de {%include 'texto_ganemos.html' %}</h1>
+			<h1 class="center">Programa colaborativo de {% include 'texto_ganemos.html' %}</h1>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
-			{%include 'texto_home.html' %}
+			{% include 'texto_home.html' %}
 		</div>
 	</div>
 
 	<h2>Se está debatiendo</h2>
-    {% include "propuestas_base.html" %}
+    {% include 'propuestas_base.html' %}
 
 	<a name="sectores"></a><h2>Sectores</h2>
     {% set list = sectores %}
-    {% include "sectores_base.html" with list %}
+    {% include 'sectores_base.html' with list %}
   
-    <a name="barrios"></a>
+    <a name="barrios"></a><h2>Barrios</h2>
 	<div class="row visible-sm visible-md visible-lg">
 		<div class="col-md-12">
             {{ include('barrios.svg', ignore_missing = true) }}
@@ -50,9 +77,14 @@
 	<div class="row">
         <h3 class="enlace-barrio">Selecciona barrio</h3>
         {% for barrio in barrios %}
-		<a class="enlace-barrio" href="listado_barrio.php?barrio={{barrio.id}}">{{barrio.nombre}}</a><br>
+        
+		<div class="clearfix visible-sm"> </div>
+		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+		  <a class="enlace-barrio" href="listado_barrio.php?barrio={{barrio.id}}">{{barrio.id}}. {{barrio.nombre}}</a><br>
+        </div>
         {% endfor %}
 	</div>
 
 
 {% endblock %}
+

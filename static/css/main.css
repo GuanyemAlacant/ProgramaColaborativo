@@ -441,6 +441,7 @@ h1.center{
   color: #FFF;
   margin-bottom: 0px;
   text-decoration: none;
+  min-height: 62px;
 }
 
 h4.titulo-sector a{

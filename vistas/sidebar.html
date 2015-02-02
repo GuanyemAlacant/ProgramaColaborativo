@@ -1,4 +1,21 @@
 <script>
+    function ObtenerNombrePorId(data, current)
+    {
+        var nombre = null;
+        if(data)
+        {
+            for(var i = 0; i < data.length; ++i)
+            {
+                if(data[i]['id'] == current)
+                {
+                    nombre = data[i]['nombre'];
+                    break;
+                }
+            }
+        }
+        return nombre;
+    }
+    
     $.ajax({
             url: 'ajax/sidebar.php',
             data: {},
@@ -9,9 +26,27 @@
 						$('#sidebar_sectores').append('<a class="enlace-barrio" href="listado_sector.php?sector=' + valor['id']+ '">'+valor['nombre']+'</a></br>');
 					});
                 
-                $.each(data['barrios'], function (clave, valor){
-						$('#sidebar_barrios').append('<a class="enlace-barrio" href="listado_barrio.php?barrio=' + valor['id']+ '">'+valor['nombre']+'</a></br>');
-					});
+                var current = 0;
+                for(var i = 0; i < data['barrios'].length; ++i)
+                {
+                    var valor = data['barrios'][i];
+                    if(current != valor['distrito_id'])
+                    {
+                        current = valor['distrito_id'];
+                        var nombreDistrito = 'Distrito ' + current;
+                        nombreDistrito = ObtenerNombrePorId(data['distritos'], current);
+                        if(nombreDistrito)
+                        {
+                            $('#sidebar_barrios').append('<h5>'+ nombreDistrito +'</h5>');
+                        }
+                    }
+                    $('#sidebar_barrios').append('<a class="enlace-barrio" href="listado_barrio.php?barrio=' + valor['id']+ '">'+valor['nombre']+'</a></br>');
+                }
+                
+                
+//                $.each(data['barrios'], function (clave, valor){
+//						$('#sidebar_barrios').append('<a class="enlace-barrio" href="listado_barrio.php?barrio=' + valor['id']+ '">'+valor['nombre']+'</a></br>');
+//					});
             }
     });
 

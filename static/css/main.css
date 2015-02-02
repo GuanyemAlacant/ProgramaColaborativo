@@ -552,3 +552,8 @@ nav a:hover, nav a:focus {
     background: #c62831;
     text-decoration: none;
 }
+
+.distrito-option {
+    color: #000;
+    background-color: #e35d64;
+}

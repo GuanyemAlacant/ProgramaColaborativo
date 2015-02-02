@@ -100,6 +100,27 @@ $(document).ready(function() {
                         <input type="text" name="apellidos" id="apellidos" class="form-control" placeholder="Apellidos">
                         <input type="text" name="email_signup" id="email_signup" class="form-control" placeholder="Email">
                         <input type="password" name="pass_signup" id="pass_signup" class="form-control" placeholder="Contraseña">
+                        <select class="form-control" name="barrio_id" id="barrio_id">
+                            <option value="">Selecciona un barrio</option>
+                            {% set actual = 0 %}
+                            {% for barrio in barrios %}
+                                {% if barrio.distrito_id != actual %}
+                                    {% set actual = barrio.distrito_id %}
+
+                                    {% set nombreDistrito = "" %}
+                                    {% for distrito in distritos %}
+                                        {% if barrio.distrito_id == distrito.id %}
+                                            {% set nombreDistrito = distrito.nombre %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if nombreDistrito %}
+                            <option class="distrito-option" disabled="disabled">{{nombreDistrito}}</option>
+                                    {% endif %}
+                                {% endif %}
+                            <option id="barrio_{{barrio.id}}" value="{{barrio.id}}">{{barrio.nombre}}</option>
+                            {% endfor %}
+                        </select>
+                        
                     </div>
                     <button id="button_signup" type="submit" class="btn btn-block signin">Registrarse</button>
                 </form>

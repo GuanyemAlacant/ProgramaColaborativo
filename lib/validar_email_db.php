@@ -5,11 +5,12 @@ include_once "config.php";
 // ini_set('display_errors', '1');
 
 
+$valid = 'false';
 //Nos intentamos conectar:
 try {
     // conectamos con bbdd e inicializamos conexión como UTF8
     $db = obtenerBBDD();
-    $db->exec('SET CHARACTER SET utf8');
+    //$db->exec('SET CHARACTER SET utf8');
 
 
     // Para hacer debug cargaríamos a mano el parámetro, descomentaríamos la siguiente línea:
@@ -19,7 +20,7 @@ try {
         // La línea siguiente la podemos descomentar para ver desde firebug-xhr si se pasa bien el parámetro desde el formulario
         //echo $_REQUEST['email'];
         $email = $_REQUEST['email_signup'];
-        $sql   = $db->prepare("SELECT * FROM users WHERE email=?");
+        $sql   = $db->prepare("SELECT * FROM prog_users WHERE email=?");
         $sql->bindParam(1, $email, PDO::PARAM_STR);
         $sql->execute();
         
@@ -30,7 +31,7 @@ try {
 catch (Exception $e)
 {
     //echo "La conexi&oacute;n ha fallado: " . $e->getMessage();
-    $valid = 'false';
+    //$valid = 'false';
 }
 
 $sql=null;

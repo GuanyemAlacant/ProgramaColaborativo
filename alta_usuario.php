@@ -12,6 +12,7 @@ if(isset($_POST["email_signup"]) && isset($_POST["pass_signup"]))
 	$apellidos = addslashes($_POST["apellidos"]);
 	$email     = addslashes($_POST["email_signup"]);
 	$password  = addslashes($_POST["pass_signup"]);
+	$barrio_id = addslashes($_POST["barrio_id"]);
 	
 	//Obtenemos la IP
 	if(!empty($_SERVER['HTTP_CLIENT_IP']))
@@ -26,8 +27,8 @@ if(isset($_POST["email_signup"]) && isset($_POST["pass_signup"]))
 	{
 		$ip = $_SERVER['REMOTE_ADDR'];
 	}
-	
-	alta($nombre, $apellidos, $email, $password, $ip);
+
+	alta($nombre, $apellidos, $email, $password, $ip, $barrio_id);
 }
 else
 {	

@@ -8,7 +8,7 @@ session_start();
 //Usuarios
 
 //Alta de usuarios
-function alta($nombre, $apellidos, $email, $password, $ip)
+function alta($nombre, $apellidos, $email, $password, $ip, $barrio_id)
 {
 	
 	// Creamos el objeto que nos permitirá gestionar nuestro hash
@@ -23,9 +23,10 @@ function alta($nombre, $apellidos, $email, $password, $ip)
 			'apellidos' => $apellidos,
 			'email' => $email,
 			'pass' => $hash,
-			'ip' => $ip
+			'ip' => $ip,
+            'barrio_id' => $barrio_id
 		);
-		$result = $conn->prepare("INSERT INTO prog_users(nombre, apellidos, email, password, ip) VALUES(:nombre, :apellidos, :email, :pass, :ip);");
+		$result = $conn->prepare("INSERT INTO prog_users(nombre, apellidos, email, password, ip, barrio_id) VALUES(:nombre, :apellidos, :email, :pass, :ip, :barrio_id);");
 		$result->execute($user);
 		//header( 'Location: login.php' );
 		login($email, $password);

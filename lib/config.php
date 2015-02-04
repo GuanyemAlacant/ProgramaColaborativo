@@ -1,18 +1,14 @@
 <?php
-//Protegido por seguridad
-
-//Datos de configuración
-//$root ="root";
-//$passwd_admin ="root";
 
 //--
 // Base de datos
 function obtenerBBDD()
 {
     // Datos de conexión a la base de datos
+    // Obtener el usuario y contraseña introducidos en /DB/database_struct.sql
     $dbinfo = 'mysql:host=localhost;dbname=programa';
-    $dbuser = "root";
-    $dbpass = "root";
+    $dbuser = "sec_user";
+    $dbpass = "your_own_password_here";
     
     //--
     $conn = new PDO($dbinfo, $dbuser, $dbpass);

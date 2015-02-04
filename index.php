@@ -17,7 +17,8 @@ $datos = array(
     'consensuadas' => listar($consensuadas),
     'sectores' => listar($sectores),
     'barrios' => listar($barrios),
-    'distritos' => listar($distritos)
+    'distritos' => listar($distritos),
+    'jornadas_activas' => JornadasActivas()
 );
 
 //echo "<pre>";

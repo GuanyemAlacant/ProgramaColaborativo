@@ -557,3 +557,9 @@ nav a:hover, nav a:focus {
     color: #000;
     background-color: #e35d64;
 }
+
+a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
+    color: #000;
+    background-color: #deacaf;
+    border-color: #e35d64;
+}

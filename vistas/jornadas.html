@@ -1,0 +1,90 @@
+{% extends "base_sidebar.html" %}
+{% block title %} Jornadas Participativas {% endblock %}
+{% block scripts %}
+<script>
+$(document).ready(function() {
+	var usuario_id     = {{ user.id|e('js') }};
+
+    //Likes propuestas
+    function checkJornada(elem)
+    {
+        var active     = $(elem).hasClass("active");
+        var jornada_id = 0;
+        if(active == false)
+            jornada_id = $(elem).attr("id");
+        
+        
+		$.ajax({
+                url: 'ajax/asignar_jornada.php',
+                data: {jornada_id:jornada_id, usuario_id:usuario_id},
+                type: 'POST',
+                dataType: 'json',
+                success: function(data) {
+                    var alertTime = 2000;
+					if(data == true)
+                    {
+                        $(".list-group-item").removeClass("active");
+                        if(active == false)
+                        {
+                            $(elem).addClass("active");
+                            $(".alert").html("Se ha almacenado su selección: " + $(elem).html());
+                            $(".alert").show('slow').delay(alertTime).hide('slow');
+                        }
+                        else
+                        {
+                            $(elem).blur();
+                            $(".alert").html("Se ha almacenado su selección.");
+                            $(".alert").show('slow').delay(alertTime).hide('slow');
+                        }
+                    }
+                    else
+                    {
+                        $(".alert").html("Se ha producido un error al seleccionar la jornada: " + $(elem).html());
+                        $(".alert").show('slow').delay(alertTime).hide('slow');
+                    }
+				}
+		});
+    }
+    
+    $(".alert").hide();
+    $('.list-group-item').on("click", function(){
+        checkJornada(this);
+	});
+});
+</script>
+{% endblock %}
+{% block content %}
+
+	<div class="row">
+		<div class="col-xs-12">
+			<h1 class="center">Jornadas Participativas</h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+            <p>Indique en qué jornada prefiere participar:</p>
+		</div>
+	</div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="list-group">
+                {% for jornada in jornadas %}
+                    {% if jornada_user.jornada_id == jornada.id %}
+                <a href="#" id="{{jornada.id}}" class="list-group-item active">{{jornada.nombre}}</a>
+                    {% else %}
+                <a href="#" id="{{jornada.id}}" class="list-group-item">{{jornada.nombre}}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="alert alert-danger" role="alert"></div>
+        </div>
+    </div>
+
+	<div class="row">
+		<div class="col-xs-12">
+            <a href="index.php">Volver</a>
+		</div>
+	</div>
+{% endblock%}

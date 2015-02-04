@@ -521,6 +521,7 @@ function ajaxLikeEnmienda($enmienda, $usuario, $like)
 	}
 }
 
+
 //--
 function ajaxCrearComentario($autor, $propuesta_id, $enmienda_id, $comentario)
 {
@@ -649,6 +650,25 @@ function obtenerConsulta($filterType, $orderType, $limit)
     $base = str_replace("[[ORDER]]", $strOrder, $base);
     
     return $base;
+}
+
+
+function JornadasActivas()
+{
+    $found = true;
+    try
+	{
+		$conn   = obtenerBBDD();
+        $result   = $conn->prepare("SELECT valor FROM prog_config WHERE nombre='jornadas'");
+        $result->execute();
+        $found = ($result->rowCount() > 0);
+	}
+	catch(PDOException $e)
+	{
+		echo $e->getMessage();
+	}
+    
+    return $found;
 }
 
 ?>

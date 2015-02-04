@@ -3,12 +3,37 @@
 -- Volcar la base de datos para la tabla `prog_sectores`
 --
 
-INSERT INTO `prog_sectores` VALUES(1, 'Derechos sociales de las personas', 'static/images/educacion.jpg', '<p>Por una salida social a la crisis y por los derechos sociales, como base de un modelo de sociedad justa y solidaria.</p>');
-INSERT INTO `prog_sectores` VALUES(2, 'Buen gobierno, Transparencia y Participación', 'static/images/participacion.jpg', '<p>Una ciudad libre de corrupción. Democracia real y participativa.</p>');
-INSERT INTO `prog_sectores` VALUES(3, 'Economía, Empleo y Turismo', 'static/images/empleo.jpg', '<p>Un nuevo modelo en el que la economía, el empleo y el presupuesto estén al servicio de las personas.</p>');
-INSERT INTO `prog_sectores` VALUES(4, 'Urbanismo, Medio ambiente, Movilidad y Derechos de los animales', 'static/images/urbanismo.jpg', '<p>Alicante, ciudad habitable, ecológica y equilibrada. Por un urbanismo sostenible.</p>');
-INSERT INTO `prog_sectores` VALUES(5, 'Igualdad, Inclusión social y Solidaridad', 'static/images/accionsocial.jpg', '<p>Políticas de igualdad, inclusión social y solidaridad: Por los Derechos Humanos.</p>');
-INSERT INTO `prog_sectores` VALUES(6, 'Cultura, Fiestas y Deportes', 'static/images/cultura.jpg', '<p>Alicante ciudad de la cultura, el deporte y la fiesta.</p>');
+INSERT INTO `prog_sectores` VALUES(1, 'Derechos sociales de las personas', 'static/images/educacion.jpg', '<h4>POR LOS DERECHOS SOCIALES BÁSICOS</h4>
+<p><strong>Competencias y servicios municipales relacionados:</strong></p>
+<p>Educación, Servicios Sociales, Salud, Vivienda</p>
+<p><strong>A nivel indicativo, en este bloque o sector se debate acerca de:</strong></p>
+<p>Modelo de politica social y educativa, prestación y gestión de los servicios y recursos sociales, prevención drogodependencias, Centros sociales y comunitarios, centros de mayores y socioeducativos, centro de acogida personas sin hogar, equipos sociales base, apoyo a entidades de interes social, atención a la dependencia, desarrollo comunitario y capacitación, centro de recursos educativos, apoyo actividades extraescolares y ciudad educadora, educación personas adultas, matriculación escolar y mantenimiento centros educativos, apoyo AMPAS, salubridad y educación para la salud, programas de alquiler vivienda social, intergeneracional y universitaria.</p>');
+INSERT INTO `prog_sectores` VALUES(2, 'Buen gobierno, Transparencia y Participación', 'static/images/participacion.jpg', '<h4>BUEN GOBIERNO, TRANSPARENCIA Y DEMOCRACIA PARTICIPATIVA</h4>
+<p><strong>Competencias y servicios municipales relacionados:</strong></p>
+<p>Participación Ciudadana, Modernización y TICs, Planes Estratégicos e Integrales, Comunicación y Relaciones Ciudadanas, Seguridad y Policia Local</p>
+<p><strong>A nivel indicativo, en este bloque o sector se debate acerca de:</strong></p>
+<p>Descentralización municipal y distritos, Reglamento Participación Ciudadana, Desarrollo y fomento asociativo.Movimiento vecinal, voluntariado, Consejo de Ciudad, Consejos sectoriales, Presupuestos Participativos, planes estrategicos de ciudad y barriales, proyectos europeos, Transparencia y Datos abiertos(Open Data)Uso de software libre.Web municipal.Smart City.Servicio WIFI.Accesibilidad a herramientas informáticas y de comunicación.Formación en TIC.Privacidad y protección del menor. Régimen interior, recursos humanos y funcionariado.Bomberos.Policía local.Protección Civil.Libertades civiles y seguridad ciudadana.Equipamientos.Cementerio.</p>');
+INSERT INTO `prog_sectores` VALUES(3, 'Economía, Empleo y Turismo', 'static/images/empleo.jpg', '<h4>LA ECONOMÍA AL SERVICIO DE LAS PERSONAS</h4>
+<p><strong>Competencias y servicios municipales relacionados:</strong></p>
+<p>Hacienda, Empleo, Turismo, Comercio, Consumo, Mercados y Recursos Humanos</p>
+<p><strong>A nivel indicativo, en este bloque o sector se debate acerca de:</strong></p>
+<p>Auditoría de la deuda municipal. Presupuestos municipales. Financiación.Impuestos y tasas municipales.Economía solidaria: cooperativismos, comercio de proximidad, consumo responsable, politica de apoyo al Turismo. Empleo público.Contratas municipales.Fomento de empleo (viveros, semilleros...).Centros sociolaborales.Apoyo a emprendedores y PYMES.Horarios comerciales.Formación ocupacional.Intermediación laboral.Políticas activas de empleo.</p>');
+INSERT INTO `prog_sectores` VALUES(4, 'Urbanismo, Medio ambiente, Movilidad y Derechos de los animales', 'static/images/urbanismo.jpg', '<h4>UNA CIUDAD SOSTENIBLE Y UN URBANISMO INTEGRADO Y ACCESIBLE</h4>
+<p><strong>Competencias y servicios municipales relacionados:</strong></p>
+<p>Urbanismo y Vivienda, Medio ambiente, Movilidad y Accesibilidad, Servicios urbanos y mantenimiento, Derechos de los animales</p>
+<p><strong>A nivel indicativo, en este bloque o sector se debate acerca de:</strong></p>
+<p>Urbanismo y vivienda, PGOU, Energía y cambio climático, Residuos, Espacios naturales y biodiversidad, Soberanía alimentaria, Lucha contra la contaminación, Educación, voluntariado y fiscalidad ambiental, Movilidad y accesibilidad, Servicios y Mantenimiento urbano, Protección y derechos de los animales...</p>');
+INSERT INTO `prog_sectores` VALUES(5, 'Igualdad, Inclusión social y Solidaridad', 'static/images/accionsocial.jpg', '<h4>POR LA IGUALDAD, LA INCLUSIÓN SOCIAL Y LA SOLIDARIDAD</h4>
+<p><strong>Competencias y servicios municipales relacionados:</strong></p>
+<p>Cooperación, Igualdad, Integración y Ciudadanía, Juventud</p>
+<p><strong>A nivel indicativo, en este bloque o sector se debate acerca de:</strong></p>
+<p>Programa de Cooperación al desarrollo, servicios de atención e integración del inmigrante, diálogo interreligioso e intercultural, políticas y servicios para la igualdad, atención a la diversidad sexual, Centro 14 y politicas y servicios para la Juventud</p>');
+INSERT INTO `prog_sectores` VALUES(6, 'Cultura, Fiestas y Deportes', 'static/images/cultura.jpg', '<h4>POR UNA CIUDAD DE LA CULTURA, EL DEPORTE Y LA FIESTA</h4>
+<p><strong>Competencias y servicios municipales relacionados:</strong></p>
+<p>Cultura, Fiestas, Deportes, Normalización Lingüistica</p>
+<p><strong>A nivel indicativo, en este bloque o sector se debate acerca de:</strong></p>
+<p>Modelo Política Cultural y Deportiva, Patrimonio Arquitectónico y Arqueológico, Museos y salas de exposiciones, Apoyo a la cultura y deporte de base, oferta educativa no formal, Archivo y Hemeroteca Municipal, Medios de comunicación públicos y comunitarios.Festivales, Muestras y eventos culturales y deportivos, Banda Sinfónica Municipal, Equipamientos culturales y deportivos, Memoria Histórica, Apoyo a las Fiestas de de la ciudad (Hogueras, Tradicionales, Moros y Cristianos, Semana Santa, barrios)</p>');
+
 
 
 --

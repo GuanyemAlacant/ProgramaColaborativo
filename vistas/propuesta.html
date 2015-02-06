@@ -6,7 +6,6 @@ $(document).ready(function() {
 	$('.textarea_comentarios').hide();
 	var propuesta_id   = {{ id.id|e('js') }};
 	var usuario_id     = {{ user.id|e('js') }};
-    var autor_id       = {{ autor.autor_id|e('js') }};
 	var usuario_nombre = '{{ user.nombre }} {{ user.apellidos }}';
 
 	actualizar_votos_propuesta();

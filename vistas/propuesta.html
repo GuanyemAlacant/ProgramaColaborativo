@@ -327,7 +327,11 @@ $(document).ready(function() {
 			{{ propuesta.propuesta|raw }}
 		</div>
         <div class="row">
-            <div class="pull-right metadata">Sector: <a href="listado_sector.php?sector={{propuesta.sector_id}}"><span class="sector"><strong>{{propuesta.sector}}</strong></span></a></div>
+            <div class="pull-right metadata">Eje programático: <a href="listado_sector.php?sector={{propuesta.sector_id}}"><span class="sector"><strong>{{propuesta.sector}}</strong></span></a></div>
+            {% if propuesta.barrio %}
+            <div class="clearfix"></div>
+            <div class="pull-right metadata">Barrio: <a href="listado_barrio.php?barrio={{propuesta.barrio_id}}"><span class="sector"><strong>{{propuesta.barrio}}</strong></span></a></div>
+            {% endif %}
         </div>
 	</div>
 	

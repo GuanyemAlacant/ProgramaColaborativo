@@ -28,19 +28,19 @@ $(document).ready(function() {
                         {
                             $(elem).addClass("active");
                             $(".alert").html("Se ha almacenado su selección: " + $(elem).html());
-                            $(".alert").show('slow').delay(alertTime).hide('slow');
+                            $(".alert").stop().hide().show('slow').delay(alertTime).hide('slow');
                         }
                         else
                         {
                             $(elem).blur();
-                            $(".alert").html("Se ha almacenado su selección.");
-                            $(".alert").show('slow').delay(alertTime).hide('slow');
+                            $(".alert").html("Se ha eliminado su selección.");
+                            $(".alert").stop().hide().show('slow').delay(alertTime).hide('slow');
                         }
                     }
                     else
                     {
                         $(".alert").html("Se ha producido un error al seleccionar la jornada: " + $(elem).html());
-                        $(".alert").show('slow').delay(alertTime).hide('slow');
+                        $(".alert").stop().hide().show('slow').delay(alertTime).hide('slow');
                     }
 				}
 		});
@@ -72,9 +72,9 @@ $(document).ready(function() {
             <div class="list-group">
                 {% for jornada in jornadas %}
                     {% if jornada_user.jornada_id == jornada.id %}
-                <a href="#" id="{{jornada.id}}" class="list-group-item active">{{jornada.nombre}}</a>
+                <a href="#" id="{{jornada.id}}" class="list-group-item active">{{jornada.nombre}}<span class="badge">{{jornada.total}}</span></a>
                     {% else %}
-                <a href="#" id="{{jornada.id}}" class="list-group-item">{{jornada.nombre}}</a>
+                <a href="#" id="{{jornada.id}}" class="list-group-item">{{jornada.nombre}}<span class="badge">{{jornada.total}}</span></a>
                     {% endif %}
                 {% endfor %}
             </div>

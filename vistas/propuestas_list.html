@@ -2,7 +2,10 @@
 	{% for propuesta in list %}
 
         {% set suma       = (propuesta.negativos + propuesta.positivos) %}
+        {% set porcentaje = 0 %}
+        {% if propuesta.total > 0 %}
         {% set porcentaje = (suma / propuesta.total)*100 %}
+        {% endif %}
         {% set total_comentarios = propuesta.enmiendas + propuesta.comentarios %}
 		<div class="row listado">
 			<div class="col-xs-1 votos">

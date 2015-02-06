@@ -6,6 +6,7 @@ $(document).ready(function() {
 	$('.textarea_comentarios').hide();
 	var propuesta_id   = {{ id.id|e('js') }};
 	var usuario_id     = {{ user.id|e('js') }};
+    var autor_id       = {{ autor.autor_id|e('js') }};
 	var usuario_nombre = '{{ user.nombre }} {{ user.apellidos }}';
 
 	actualizar_votos_propuesta();
@@ -74,19 +75,29 @@ $(document).ready(function() {
 				}
 		});
     }
-	$('.enm_favor').on("click", function(){
-		var sacar_id = $(this).children().first().attr('id').split('-');
-		var id = sacar_id[2];
-        
-        checkBtnEnmienda(id, true);
-	});
-	$('.enm_contra').on("click", function(){
-        var sacar_id = $(this).children().first().attr('id').split('-');
-		var id = sacar_id[2];
-        
-		checkBtnEnmienda(id, false);
-	});
     
+    //--
+    function registrarLikesEnmiendas()
+    {
+        $('.enm_favor').off("click");
+        $('.enm_contra').off("click");
+        
+        $('.enm_favor').on("click", function(){
+            var sacar_id = $(this).children().first().attr('id').split('-');
+            var id = sacar_id[2];
+
+            checkBtnEnmienda(id, true);
+        });
+        $('.enm_contra').on("click", function(){
+            var sacar_id = $(this).children().first().attr('id').split('-');
+            var id = sacar_id[2];
+
+            checkBtnEnmienda(id, false);
+        });
+    }
+    registrarLikesEnmiendas();
+    
+    //--
 	//Likes comentarios
     function checkBtnComentario(id, btnUsedYes) 
     {
@@ -114,20 +125,29 @@ $(document).ready(function() {
 				}
 		});
     }
-	$('.com_favor').on("click", function(){
-		var sacar_id = $(this).children().first().attr('id').split('-');
-		var id = sacar_id[2];
-        
-		checkBtnComentario(id, true);
-	});
-	$('.com_contra').on("click", function(){
-		var sacar_id = $(this).children().first().attr('id').split('-');
-		var id = sacar_id[2];
-        
-		checkBtnComentario(id, false);
-	});
+    
+    //--
+    function registrarLikesComentarios()
+    {
+        $('.com_favor').off("click");
+        $('.com_contra').off("click");
 
+        $('.com_favor').on("click", function(){
+            var sacar_id = $(this).children().first().attr('id').split('-');
+            var id = sacar_id[2];
 
+            checkBtnComentario(id, true);
+        });
+        $('.com_contra').on("click", function(){
+            var sacar_id = $(this).children().first().attr('id').split('-');
+            var id = sacar_id[2];
+
+            checkBtnComentario(id, false);
+        });
+    }
+    registrarLikesComentarios();
+
+    //--
 	//enmienda nueva
 	$('#boton_enmienda').click(function(){
 		var texto_enmienda = $('#texto_enmienda').val(); 
@@ -139,21 +159,24 @@ $(document).ready(function() {
                 dataType: 'json',
                 success: function(data) {
 					$.each(data, function (clave, valor){
-                        // TODO: Insertar el comentario, en vez de asignarlo!!
-                        
-						$('#enmienda_nueva').after('<div class="row enmienda"><div id ="enm-votos-{{ enmienda.id }}"class="col-xs-1 votos">1</div><div class="col-xs-1"><div class="enm_favor"><i id="enm-fav-{{ enmienda.id }}" class="fa fa-angle-up fa-lg active"></i></div><div class="enm_contra"><i id="enm-con-{{ enmienda.id }}"class="fa fa-angle-down fa-lg inactivo"></i></div></div> <div class="col-xs-10"><div class="enm_autor"> Comentario de '+ usuario_nombre +'</div><div class="enm_texto">'+ texto_enmienda +'</div></div></div>');
-
+                        //
+                        var insignia = '';
+                        {% if autor.autor_id == user.id %}
+                        insignia = '<img src="static/images/insignia.png">';
+                        {% endif %}
+						$('#enmienda_nueva').after('<div class="row enmienda"><div id ="enm-votos-{{ enmienda.id }}"class="col-xs-1 votos">1</div><div class="col-xs-1"><div class="enm_favor"><i id="enm-fav-{{ enmienda.id }}" class="fa fa-angle-up fa-lg active"></i></div><div class="enm_contra"><i id="enm-con-{{ enmienda.id }}"class="fa fa-angle-down fa-lg inactivo"></i></div></div> <div class="col-xs-10"><div class="enm_autor">'+insignia+' Comentario de '+ usuario_nombre +'</div><div class="enm_texto">'+ texto_enmienda +'</div></div></div>');
+                         
 						//$('#texto_enmienda').val('');
 						$('html, body').stop().animate({
         					scrollTop: $('#enmienda_nueva').offset().top-100
     					}, 300);
     					$('.textarea_comentarios').hide();
+                        registrarLikesEnmiendas();
 					});
 				}
 		});
 		}
 	});
-    
     
 	//Visualizar formulario comentario nuevo
 	$(".comentarios-enmiendas").click(function(e){
@@ -177,7 +200,12 @@ $(document).ready(function() {
 	                dataType: 'json',
 	                success: function(data) {
 						$.each(data, function (clave, valor){
-							$('#comentario-'+enmienda_id).append('<div class="row comentarios"><div class="col-xs-1"></div><div id ="com-votos-{{ comentario.id }}"class="col-xs-1 circular"><span class="centrado">1</span></div><div class="col-xs-1"><div class="com_favor"><i id="com-fav-{{ comentario.id }}" class="fa fa-angle-up fa-lg active"></i></div><div class="com_contra"><i id="com-con-{{ comentario.id }}" class="fa fa-angle-down fa-lg inactivo"></i></div></div><div class="col-xs-9 fondo_comentarios"><div class="com_autor"> Respuesta de '+ usuario_nombre +'</div><div class="com_texto">'+texto_comentario+'</div></div></div>');
+
+                            var insignia = '';
+                            {% if autor.autor_id == user.id %}
+                            insignia = '<img src="static/images/insignia.png">';
+                            {% endif %}                            
+							$('#comentario-'+enmienda_id).append('<div class="row comentarios"><div class="col-xs-1"></div><div id ="com-votos-{{ comentario.id }}"class="col-xs-1 circular"><span class="centrado">1</span></div><div class="col-xs-1"><div class="com_favor"><i id="com-fav-{{ comentario.id }}" class="fa fa-angle-up fa-lg active"></i></div><div class="com_contra"><i id="com-con-{{ comentario.id }}" class="fa fa-angle-down fa-lg inactivo"></i></div></div><div class="col-xs-9 fondo_comentarios"><div class="com_autor">'+insignia+' Respuesta de '+ usuario_nombre +'</div><div class="com_texto">'+texto_comentario+'</div></div></div>');
 							$('.activo').hide();
 							$('.enlace-activo').show();
                             
@@ -185,7 +213,7 @@ $(document).ready(function() {
                                 scrollTop: $('#comentario-'+enmienda_id).children().last().offset().top-100
                             }, 300);
                             $('.textarea_comentarios').hide();
-							
+							registrarLikesComentarios();
 						});
 					}
 			});
@@ -310,7 +338,7 @@ $(document).ready(function() {
 	
 	{% endif %}
 	{% if user %}
-		{% if user.id != autor.autor_id%}
+		{% if user.id != autor.autor_id %}
 	<div class="row" id="votar_propuesta">
 		<div class="col-xs-1"></div>
 		<div class="col-xs-4" id="prop_favor"><a class="btn btn-success btn-lg btn-block inactivo">A FAVOR</a></div>

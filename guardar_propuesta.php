@@ -3,6 +3,7 @@ include_once "lib/functions.php";
 
 if(isset($_POST["titulo"]) && isset($_POST["propuesta"]) && isset($_POST["sector"]))
 {
+    $autor     = userid();
 	$titulo    = $_POST["titulo"];
 	$propuesta = $_POST["propuesta"];
 	$sector    = $_POST["sector"];
@@ -11,11 +12,11 @@ if(isset($_POST["titulo"]) && isset($_POST["propuesta"]) && isset($_POST["sector
     if(isset($_POST["id"]))
     {
         $id        = $_POST["id"];
-        editar_propuesta($titulo, $propuesta, $sector, $barrio, $id);
+        editarPropuesta($id, $titulo, $propuesta, $sector, $barrio);
     }
     else
     {
-        nueva_propuesta($titulo, $propuesta, $sector, $barrio);	
+        crearPropuesta($autor, $titulo, $propuesta, $sector, $barrio);	
     }
 }
 else

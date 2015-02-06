@@ -1,7 +1,6 @@
 <?php
 include_once "lib/functions.php";
 
-$template = $twig->loadTemplate('propuesta.html');
 if(isset($_GET['id']))
 {
 	
@@ -65,6 +64,7 @@ if(isset($_GET['id']))
         'comentarios' => listarpreparada($buscaID, $comentarios)
     );
 
+    $template = $twig->loadTemplate('propuesta.html');
     echo $template->render($datos);
 }
 else

@@ -43,7 +43,6 @@
 
 {% block content %}
 <form class="form-horizontal" role="form" id="nueva-propuesta" action="guardar_propuesta.php" method="post" enctype="multipart/form-data">
-
     {% if propuesta.id %}
     <input type="hidden" name="id" value="{{propuesta.id}}">
     {% endif %}

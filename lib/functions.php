@@ -273,7 +273,6 @@ function userid()
 //nueva propuesta
 function nueva_propuesta($titulo, $propuesta, $sector, $barrio)
 {
-	
 	$autor = userid();
 	try
 	{
@@ -301,7 +300,6 @@ function nueva_propuesta($titulo, $propuesta, $sector, $barrio)
 }
 
 //Editar propuesta
-
 function editar_propuesta($titulo, $propuesta, $sector, $barrio, $id)
 {
 	try
@@ -328,9 +326,6 @@ function editar_propuesta($titulo, $propuesta, $sector, $barrio, $id)
     //redirije a la propuesta una vez editada
     header('Location: detalle_propuesta.php?id=' . $id);
 }
-
-//--
-//--
 
 //--
 function obtenerUsuarioJSON($usuario)
@@ -399,8 +394,7 @@ function editarPropuesta($id, $titulo, $propuesta, $sector, $barrio)
 			'sector' => $sector,
 			'barrio' => $barrio
 		);
-		$result = $conn->prepare("UPDATE prog_propuestas SET titulo=:titulo, propuesta=:propuesta, sector=:sector, barrio=:barrio 
-            WHERE id=:id;");
+		$result = $conn->prepare("UPDATE prog_propuestas SET titulo=:titulo, propuesta=:propuesta, sector_id=:sector, barrio_id=:barrio WHERE id=:id;");
 		$result->execute($consulta);
         $conn = null;
 	}

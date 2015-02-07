@@ -6,7 +6,7 @@ $consensuadas = obtenerConsulta("", "consensuadas", true);
 $debatidas    = obtenerConsulta("", "debatidas", true);
 $recientes    = obtenerConsulta("", "recientes", true);
 $sectores     = 'SELECT * FROM prog_sectores';
-$barrios      = 'SELECT * FROM prog_barrios ORDER BY distrito_id, id';
+$barrios      = 'SELECT * FROM prog_barrios ORDER BY id';   // No ordenar por distrito!!
 $distritos    = 'SELECT * FROM prog_distritos';
 
 $datos = array(

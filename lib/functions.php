@@ -589,17 +589,15 @@ function ajaxLikeComentario($comentario, $usuario, $like)
 //--
 function obtenerConsulta($filterType, $orderType, $limit)
 {
-    
     $base = "SELECT p.id, p.autor_id, p.titulo, p.propuesta, p.barrio_id, b.nombre barrio, 
                 p.sector_id, s.nombre sector, u.nombre, u.apellidos, u.id as user_id,
-                Sum(Case When l.voto > 0 Then l.voto Else 0 End) as positivos,
-                Sum(Case When l.voto < 0 Then l.voto Else 0 End) as negativos,
-                Count(l.voto) as total,
+                (SELECT count(*) FROM prog_likes_propuestas WHERE (propuesta_id=p.id AND voto > 0)) as positivos,
+                (SELECT -count(*) FROM prog_likes_propuestas WHERE (propuesta_id=p.id AND voto < 0)) as negativos,
+                (SELECT count(*) FROM prog_likes_propuestas WHERE (propuesta_id=p.id AND voto <> 0)) as total,
                 (SELECT count(*) FROM prog_enmiendas WHERE (propuesta_id=p.id)) as enmiendas,
                 (SELECT count(*) FROM prog_comentarios WHERE (propuesta_id=p.id)) as comentarios
                 FROM prog_propuestas as p 
                 LEFT JOIN prog_users as u ON (p.autor_id=u.id)
-                LEFT JOIN prog_likes_propuestas as l ON (p.id=l.propuesta_id)
                 LEFT JOIN prog_sectores as s ON (p.sector_id=s.id)
                 LEFT JOIN prog_barrios as b ON (p.barrio_id=b.id)
                 [[WHERE]]
@@ -620,7 +618,7 @@ function obtenerConsulta($filterType, $orderType, $limit)
     
     if($orderType == "valoradas")
     {
-        $strOrder = "ORDER BY total DESC";
+        $strOrder = "ORDER BY total DESC, positivos / total DESC";
     }
     else if($orderType == "debatidas")
     {
@@ -632,12 +630,12 @@ function obtenerConsulta($filterType, $orderType, $limit)
     }
     else if($orderType == "consensuadas")
     {
-        $strOrder = "ORDER BY positivos DESC, negativos DESC";
+        $strOrder = "ORDER BY positivos / total DESC, positivos DESC";
     }
     
     if($limit)
     {
-        $strOrder .= " LIMIT 0, 30";
+        $strOrder .= " LIMIT 0, 20";
     }
     
     $base = str_replace("[[WHERE]]", $strWhere, $base);

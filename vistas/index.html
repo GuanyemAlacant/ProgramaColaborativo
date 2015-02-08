@@ -60,15 +60,17 @@
 		</div>
 	</div>
 
-    {% if user %}
+    
     {% if jornadas_activas %}
 	<div class="row">
-		<div class="col-xs-12 alert alert-success">
-			<p>Para participar en las Jornadas Participativas, es recomendable que indique en cual de ellas desea hacerlo para ayudar a reservar el espacio más indicado.</p>
-            <p>Por favor, indique qué mesa de trabajo prefiere <a class="alert-link" href="jornadas.php">pulsando aquí.</a></p>
+		<div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {% include 'texto_home_jornadas.html' %}
+                </div>
+            </div>
 		</div>
 	</div>
-    {% endif %}
     {% endif %}
 
 	<h2>Se está debatiendo</h2>

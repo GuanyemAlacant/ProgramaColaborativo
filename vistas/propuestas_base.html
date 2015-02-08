@@ -19,28 +19,31 @@
   			<li><a href="#consensuadas" role="tab" data-toggle="tab">Más consenso</a></li>
   			<li><a href="#debatidas" role="tab" data-toggle="tab">Más debatidas</a></li>
   			<li><a href="#recientes" role="tab" data-toggle="tab">Más recientes</a></li>
-  
 		</ul>
 	</div>
 
 	<div class="tab-content">
 
         <div class="tab-pane active" id="valoradas">
+            <p>Propuestas ordenadas por mayor numero de votos</p>
             {% set list = valoradas %}
             {% include 'propuestas_list.html' with list %}
         </div>
 
         <div class="tab-pane" id="consensuadas">
+            <p>Propuestas ordenadas por mayor porcentaje de votos positivos</p>
             {% set list = consensuadas %}
             {% include 'propuestas_list.html' with list %}
         </div>
 
         <div class="tab-pane" id="debatidas">
+            <p>Propuestas ordenadas por mayor número de comentarios</p>
             {% set list = debatidas %}
             {% include 'propuestas_list.html' with list %}
         </div>
 
         <div class="tab-pane" id="recientes">
+            <p>Propuestas ordenadas por creadación más recientemente</p>
             {% set list = recientes %}
             {% include 'propuestas_list.html' with list %}
         </div>

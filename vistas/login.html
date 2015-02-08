@@ -50,6 +50,50 @@ $(document).ready(function() {
           }
         },
     });
+
+    function getURIParam(val) {
+        var result = null,
+            tmp = [];
+        location.search
+        //.replace ( "?", "" ) 
+        // this is better, there might be a question mark inside
+        .substr(1)
+            .split("&")
+            .forEach(function (item) {
+            tmp = item.split("=");
+            if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
+        });
+        return result;
+    }
+    
+    if(getURIParam("alta") != null)
+    {
+        $('#login').hide();
+    }
+    else
+    {
+        $('#signup').hide();
+    }
+    $('#forgot').hide();
+    $('#login_from_1').click(function (e) {
+        e.preventDefault();
+        $('#signup').hide();
+        $('#forgot').hide();
+        $('#login').show();
+    });
+    $('#signup_from_1').click(function (e) {
+        e.preventDefault();
+        $('#login').hide();
+        $('#forgot').hide();
+        $('#signup').show();
+
+    });
+    $('#forgot_from_1').click(function (e) {
+        e.preventDefault();
+        $('#signup').hide();
+        $('#login').hide();
+        $('#forgot').show();
+    })
 });
 </script>
 {% endblock %}
@@ -144,30 +188,5 @@ $(document).ready(function() {
             </div>
         </div>
     </div> 
-
-    <script>
-
-        $('#signup').hide();
-        $('#forgot').hide();
-        $('#login_from_1').click(function (e) {
-            e.preventDefault();
-            $('#signup').hide();
-            $('#forgot').hide();
-            $('#login').show();
-        });
-        $('#signup_from_1').click(function (e) {
-            e.preventDefault();
-            $('#login').hide();
-            $('#forgot').hide();
-            $('#signup').show();
-            
-        });
-        $('#forgot_from_1').click(function (e) {
-            e.preventDefault();
-            $('#signup').hide();
-            $('#login').hide();
-            $('#forgot').show();
-        })
-
-    </script>                         
+                        
 {% endblock %}

@@ -635,7 +635,7 @@ function obtenerConsulta($filterType, $orderType, $limit)
     
     if($limit)
     {
-        $strOrder .= " LIMIT 0, 20";
+        $strOrder .= " LIMIT 0, 10";
     }
     
     $base = str_replace("[[WHERE]]", $strWhere, $base);

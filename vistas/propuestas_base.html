@@ -8,7 +8,7 @@
 	{% else %}
 	<div class="row">
 		<div class="col-xs-12">
-			<a href="login.php">Tienes que estar identificado para hacer una propuesta, votarla o comentarla.</a>
+			<a href="login.php">Tienes que identificarte para hacer una propuesta, votarla o comentarla.</a>
 		</div>
 	</div>
 	{% endif %}
@@ -22,6 +22,7 @@
 		</ul>
 	</div>
 
+	<div class="row">
 	<div class="tab-content">
 
         <div class="tab-pane active" id="valoradas">
@@ -47,6 +48,9 @@
             {% set list = recientes %}
             {% include 'propuestas_list.html' with list %}
         </div>
-        
+        {% if mostrar_todas %}
+        <a href="listado_todas.php" class="btn btn-success">Ver todas</a>
+        {% endif %}
 	</div>
+    </div>
 {% endblock %}

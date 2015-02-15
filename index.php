@@ -18,7 +18,8 @@ $datos = array(
     'sectores' => listar($sectores),
     'barrios' => listar($barrios),
     'distritos' => listar($distritos),
-    'jornadas_activas' => JornadasActivas()
+    'jornadas_activas' => JornadasActivas(),
+    'mostrar_todas' => true
 );
 
 //echo "<pre>";

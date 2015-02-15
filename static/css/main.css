@@ -563,3 +563,8 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
     background-color: #deacaf;
     border-color: #e35d64;
 }
+
+.upper
+{
+    text-transform: uppercase;
+}

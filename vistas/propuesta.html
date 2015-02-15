@@ -165,7 +165,7 @@ $(document).ready(function() {
                         {% endif %}
 						$('#enmienda_nueva').after('<div class="row enmienda"><div id ="enm-votos-{{ enmienda.id }}"class="col-xs-1 votos">1</div><div class="col-xs-1"><div class="enm_favor"><i id="enm-fav-{{ enmienda.id }}" class="fa fa-angle-up fa-lg active"></i></div><div class="enm_contra"><i id="enm-con-{{ enmienda.id }}"class="fa fa-angle-down fa-lg inactivo"></i></div></div> <div class="col-xs-10"><div class="enm_autor">'+insignia+' Comentario de '+ usuario_nombre +'</div><div class="enm_texto">'+ texto_enmienda +'</div></div></div>');
                          
-						//$('#texto_enmienda').val('');
+						$('#texto_enmienda').val('');
 						$('html, body').stop().animate({
         					scrollTop: $('#enmienda_nueva').offset().top-100
     					}, 300);
@@ -312,6 +312,9 @@ $(document).ready(function() {
 {% endblock %}
 {% block content %}
 	<div class="propuesta-individual">
+		<div class="row">
+            <p><a href="listado_todas.php" class="btn btn-default"><i class="fa fa-chevron-left "></i> Todas las propuestas</a></p>
+        </div>
 		<div class="row encabezado">
 				<div class="col-xs-1 votos" id="votos">
 					{{ propuesta.positivos + propuesta.negativos}}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Programa colaborativo para las municipales de {% include 'texto_ganemos.html' %}" />
+    <meta name="keywords" content="programa colaborativo municipales {% include 'texto_ganemos.html' %}" />
+    <meta name="robots" content="index,follow" />
+    <meta name="geo.region" content="ES" />
+    <meta property="og:locale" content="es_ES">
+    <link rel="shortcut icon" href="static/images/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css" />
+  	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <style>
+        h1.page_breaker {
+            page-break-before: always;
+        }
+    </style>
+    <script>
+    $(document).ready(function() {
+        function removeStyle(elem){
+            $(elem).removeAttr('style');
+            $(elem).children().each(function(i, _elem){
+                removeStyle(_elem);
+            });
+        }
+        
+        $('.propuesta').each(function(i, elem){
+            removeStyle(elem);
+        });
+    });
+    </script>
+</head>
+<body>
+
+{% set actual = 0 %}
+{% for propuesta in propuestas %}
+    {% if propuesta.sector_id != actual %}
+        {% set actual = propuesta.sector_id %}
+        <h1 {{className}}>{{propuesta.sector}}</h1>
+    
+        {% set className = " class=page_breaker " %}
+    {% endif %}
+
+    <div class="propuesta">
+        {% set porcentaje = 0 %}
+        {% if propuesta.total > 0 %}
+        {% set porcentaje = (propuesta.positivos / propuesta.total)*100 %}
+        {% endif %}
+        
+        <h3>{{ propuesta.titulo}}</h3>
+        <p class="autor"><strong>Autor:</strong> {{ propuesta.nombre}} {{ propuesta.apellidos}} ({{ porcentaje | number_format(2) }}% de {{ propuesta.total}} votos, {{propuesta.enmiendas}} enmiendas)
+        {% if propuesta.barrio %}
+        <br /><strong>Barrio</strong>: {{propuesta.barrio}}
+        {% endif %}
+        </p>
+        <p class="body">{{ propuesta.propuesta|raw }}</p>
+    </div>
+
+{% endfor %}
+    
+</body>
+</html>
